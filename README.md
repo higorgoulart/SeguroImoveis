@@ -1,12 +1,14 @@
-# SeguroImoveis
-Projeto de um banco de dados simulando uma seguradora de imóveis em conjunto a interface criada com Windows Forms.
-
 ## Projeto Sistema de Seguradora de Imóveis
 
 ### Grupo C
 
 ### Integrantes:
 @higorgoulart<br>
+@guilherme-savio<br>
+@SofiaMartinslv<br>
+@Bruno-Venturini<br>
+@eduardofreitas2<br>
+@GabrielGuinzani<br>
 
 ### Modelo Físico:
 Utilizado https://dbdiagram.io/<br>
