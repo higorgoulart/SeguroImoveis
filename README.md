@@ -3,12 +3,12 @@
 ### Grupo C
 
 ### Integrantes:
-@higorgoulart<br>
-@guilherme-savio<br>
-@SofiaMartinslv<br>
-@Bruno-Venturini<br>
-@eduardofreitas2<br>
-@GabrielGuinzani <br>
+- @higorgoulart
+- @guilherme-savio
+- @SofiaMartinslv
+- @Bruno-Venturini
+- @eduardofreitas2
+- @GabrielGuinzani
 
 ### Modelo Físico:
 Utilizado https://dbdiagram.io/<br>
