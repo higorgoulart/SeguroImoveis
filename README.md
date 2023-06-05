@@ -6,7 +6,7 @@
 - @higorgoulart
 - @guilherme-savio
 - @SofiaMartinslv
-- @Bruno-Venturini;
+- @Bruno-Venturini
 - @eduardofreitas2
 - @GabrielGuinzani
 
