@@ -3,6 +3,7 @@
 ### Grupo C
 
 ### Integrantes:
+- @angelum23
 - @higorgoulart
 - @guilherme-savio
 - @SofiaMartinslv
