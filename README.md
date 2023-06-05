@@ -8,7 +8,7 @@
 @SofiaMartinslv<br>
 @Bruno-Venturini<br>
 @eduardofreitas2<br>
-@GabrielGuinzani<br>
+@GabrielGuinzani <br>
 
 ### Modelo Físico:
 Utilizado https://dbdiagram.io/<br>
