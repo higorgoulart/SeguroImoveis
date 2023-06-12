@@ -10,6 +10,7 @@
 - @Bruno-Venturini
 - @eduardofreitas2
 - @GabrielGuinzani
+- @guga2905
 
 ### Modelo Físico:
 Utilizado https://dbdiagram.io/<br>
