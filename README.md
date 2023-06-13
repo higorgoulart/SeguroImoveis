@@ -8,7 +8,7 @@
 - @guilherme-savio
 - @SofiaMartinslv
 - @Bruno-Venturini
-- @eduardofreitas2
+- @dufrtss
 - @GabrielGuinzani
 - @guga2905
 
