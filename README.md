@@ -17,9 +17,15 @@ Utilizado https://dbdiagram.io/
 <div>
     <img src="modelo_fisico/diagrama.png" style="heigh: 400px; width: 600px;">
 </div>
-  
-### Dicionário de Dados:
-<code>Excel ou tabela do Github (markdown)</code>
+
+
+ <div style="display:flex; flex-direction: row; "> 
+    <a href="https://github.com/guilherme-savio/SeguroImoveis/blob/main/dicionario_dados/dicionario.xlsx">
+    <h3>
+        Dicionário de Dados
+    </h3>
+   </a>
+</div>
 
 ### Scripts DDL Criação do Database:
 Banco de dados utilizado SQL Server versão 2022 - Azure.<br>
