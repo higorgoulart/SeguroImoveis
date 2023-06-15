@@ -13,9 +13,10 @@
 - @guga2905
 
 ### Modelo Físico:
-Utilizado https://dbdiagram.io/<br>
-Arquivo fonte: <code>link pro arquivo</code><br>
-<code>Imagem</code>
+Utilizado https://dbdiagram.io/
+<div>
+    <img src="modelo_fisico/diagrama.png" style="heigh: 400px; width: 600px;">
+</div>
   
 ### Dicionário de Dados:
 <code>Excel ou tabela do Github (markdown)</code>
