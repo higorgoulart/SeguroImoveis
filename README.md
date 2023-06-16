@@ -13,30 +13,26 @@
 - @guga2905
 
 ### Modelo Físico:
-Utilizado https://dbdiagram.io/
 <div>
     <img src="modelo_fisico/diagrama.png" style="heigh: 400px; width: 600px;">
 </div>
 
+Utilizado [dbdiagram](https://dbdiagram.io/).
 
- <div style="display:flex; flex-direction: row; "> 
-    <a href="https://github.com/guilherme-savio/SeguroImoveis/blob/main/dicionario_dados/dicionario.xlsx">
-    <h3>
-        Dicionário de Dados
-    </h3>
-   </a>
-</div>
+### Dicionário de Dados:
+<code>[dicionario.xlsx](./dicionario_dados/dicionario.xlsx)</code>
 
-### Scripts DDL Criação do Database:
-Banco de dados utilizado SQL Server versão 2022 - Azure.<br>
-<code>1 arquivo SQL por objeto</code>
+### Scripts:
+Banco de dados utilizado MySQL Server versão 2022 - Azure.<br>
 
-### Scripts Popula tabelas:
-Banco de dados utilizado SQL Server versão 2022 - Azure.<br>
-<code>1 arquivo SQL por objeto</code>
+- #### Scripts DDL Criação do Database:
+    <code>[ddl.sql](./scripts/ddl.sql)</code>
 
-### Objetos de BD (stored procedure, triggers e functions):
-<code>1 arquivo SQL por objeto</code>
+- #### Scripts Popula tabelas:
+    <code>[insert.sql](./scripts/insert.sql)</code>
+
+- #### Objetos de BD (stored procedure, triggers e functions):
+    <code>[bd.sql](./scripts/bd.sql)</code>
   
 ### Código do sistema: 
 Linguagem de Programação C# .NET Windows Forms.<br>
