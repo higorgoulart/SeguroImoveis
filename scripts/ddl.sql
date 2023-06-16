@@ -1,4 +1,4 @@
-CREATE TABLE `cliente` (
+CREATE TABLE IF NOT EXISTS `cliente` (
   `id_cliente` int PRIMARY KEY,
   `nome` varchar(255),
   `sobrenome` varchar(255),
@@ -8,7 +8,7 @@ CREATE TABLE `cliente` (
   `email` varchar(255)
 );
 
-CREATE TABLE `imovel` (
+CREATE TABLE IF NOT EXISTS `imovel` (
   `id_imovel` int PRIMARY KEY,
   `id_proprietario` int,
   `id_inquilino` int,
@@ -19,7 +19,7 @@ CREATE TABLE `imovel` (
   `ano_construcao` int
 );
 
-CREATE TABLE `apolice` (
+CREATE TABLE IF NOT EXISTS `apolice` (
   `id_apolice` int PRIMARY KEY,
   `id_imovel` int,
   `dt_inicio` date,
@@ -27,18 +27,18 @@ CREATE TABLE `apolice` (
   `valor_apolice` decimal
 );
 
-CREATE TABLE `cobertura` (
+CREATE TABLE IF NOT EXISTS `cobertura` (
   `id_cobertura` int PRIMARY KEY,
   `descricao` varchar(255),
   `valor` decimal
 );
 
-CREATE TABLE `apolice_cobertura` (
+CREATE TABLE IF NOT EXISTS `apolice_cobertura` (
   `id_apolice` int,
   `id_cobertura` int
 );
 
-CREATE TABLE `sinistro` (
+CREATE TABLE IF NOT EXISTS `sinistro` (
   `id_sinistro` int PRIMARY KEY,
   `id_apolice` int,
   `dt_sinistro` date,
@@ -46,14 +46,14 @@ CREATE TABLE `sinistro` (
   `valor_sinistro` decimal
 );
 
-CREATE TABLE `pagamento` (
+CREATE TABLE IF NOT EXISTS `pagamento` (
   `id_pagamento` int PRIMARY KEY,
   `id_apolice` int,
   `dt_pagamento` date,
   `valor_pagamento` decimal
 );
 
-CREATE TABLE `avaliacao` (
+CREATE TABLE IF NOT EXISTS `avaliacao` (
   `id_avaliacao` int PRIMARY KEY,
   `id_imovel` int,
   `dt_avaliacao` date,
