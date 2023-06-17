@@ -12,15 +12,18 @@ namespace SeguroImoveis
             _conexao = new MySqlConnection("Server=localhost;Database=seguradora_imovel;Uid=root;Pwd=;");
 
             CreateTables();
+            AddDefaultData();
 
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btAdicionar_Click(object sender, EventArgs e)
         {
             try
             {
-                var script = $"INSERT INTO apolice (nome) VALUES ('{textBox1.Text}')";
+                var script = @$"
+                    INSERT INTO apolice (id_apolice, id_imovel, dt_inicio, dt_termino, valor_apolice) 
+                    VALUES ({tbIdApolice.Text}, {tbIdImovel.Text}, '{dtInicio.Text}', '{dtTermino.Text}', {tbValor.Text})";
 
                 ExecuteCommand(script);
 
@@ -30,9 +33,9 @@ namespace SeguroImoveis
             {
                 MessageBox.Show(ex.Message);
             }
-            finally 
-            { 
-                _conexao.Close(); 
+            finally
+            {
+                _conexao.Close();
             }
         }
 
@@ -52,9 +55,25 @@ namespace SeguroImoveis
             }
         }
 
-        private void ExecuteCommand(string sqlInsert)
+        private void AddDefaultData()
         {
-            var command = new MySqlCommand(sqlInsert, _conexao);
+            try
+            {
+                ExecuteCommand(DatabaseUtils.GetScript("insert.sql"));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                _conexao.Close();
+            }
+        }
+
+        private void ExecuteCommand(string script)
+        {
+            var command = new MySqlCommand(script, _conexao);
 
             _conexao.Open();
 
