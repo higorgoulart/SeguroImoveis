@@ -1,5 +1,4 @@
 using MySql.Data.MySqlClient;
-using SeguroImoveis.Utils;
 
 namespace SeguroImoveis
 {
@@ -7,12 +6,9 @@ namespace SeguroImoveis
     {
         private readonly MySqlConnection _conexao;
 
-        public CadastroApolice()
+        public CadastroApolice(MySqlConnection conexao)
         {
-            _conexao = new MySqlConnection("Server=localhost;Database=seguradora_imovel;Uid=root;Pwd=;");
-
-            CreateTables();
-            AddDefaultData();
+            _conexao = conexao;
 
             InitializeComponent();
         }
@@ -25,7 +21,11 @@ namespace SeguroImoveis
                     INSERT INTO apolice (id_apolice, id_imovel, dt_inicio, dt_termino, valor_apolice) 
                     VALUES ({tbIdApolice.Text}, {tbIdImovel.Text}, '{dtInicio.Text}', '{dtTermino.Text}', {tbValor.Text})";
 
-                ExecuteCommand(script);
+                var command = new MySqlCommand(script, _conexao);
+
+                _conexao.Open();
+
+                command.ExecuteReader();
 
                 MessageBox.Show("Tudo certo!");
             }
@@ -37,47 +37,6 @@ namespace SeguroImoveis
             {
                 _conexao.Close();
             }
-        }
-
-        private void CreateTables()
-        {
-            try
-            {
-                ExecuteCommand(DatabaseUtils.GetScript("ddl.sql"));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                _conexao.Close();
-            }
-        }
-
-        private void AddDefaultData()
-        {
-            try
-            {
-                ExecuteCommand(DatabaseUtils.GetScript("insert.sql"));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                _conexao.Close();
-            }
-        }
-
-        private void ExecuteCommand(string script)
-        {
-            var command = new MySqlCommand(script, _conexao);
-
-            _conexao.Open();
-
-            command.ExecuteReader();
         }
     }
 }

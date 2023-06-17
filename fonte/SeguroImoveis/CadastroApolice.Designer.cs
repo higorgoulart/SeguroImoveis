@@ -44,7 +44,7 @@
             // btAdicionar
             // 
             btAdicionar.Location = new Point(198, 160);
-            btAdicionar.Name = "button1";
+            btAdicionar.Name = "btAdicionar";
             btAdicionar.Size = new Size(149, 44);
             btAdicionar.TabIndex = 0;
             btAdicionar.Text = "Salvar";
@@ -119,19 +119,19 @@
             // 
             // dtInicio
             // 
+            dtInicio.Format = DateTimePickerFormat.Short;
             dtInicio.Location = new Point(109, 64);
             dtInicio.Name = "dtInicio";
             dtInicio.Size = new Size(235, 23);
             dtInicio.TabIndex = 3;
-            dtInicio.Format = DateTimePickerFormat.Short;
             // 
             // dtTermino
             // 
+            dtTermino.Format = DateTimePickerFormat.Short;
             dtTermino.Location = new Point(110, 93);
             dtTermino.Name = "dtTermino";
             dtTermino.Size = new Size(235, 23);
             dtTermino.TabIndex = 4;
-            dtTermino.Format = DateTimePickerFormat.Short;
             // 
             // CadastroApolice
             // 
@@ -150,7 +150,7 @@
             Controls.Add(lbIdApolice);
             Controls.Add(btAdicionar);
             Name = "CadastroApolice";
-            Text = "Form1";
+            Text = "Cadastro de apólice";
             ResumeLayout(false);
             PerformLayout();
         }
