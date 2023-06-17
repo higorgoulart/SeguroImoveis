@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS `cliente` (
   `id_cliente` int PRIMARY KEY,
   `nome` varchar(255),
-  `sobrenome` varchar(255),
   `dt_nasc` date,
   `endereco` varchar(255),
   `telefone` varchar(255),
