@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS `imovel` (
   `id_inquilino` int,
   `endereco` varchar(255),
   `tipo_imovel` varchar(255),
-  `valor_imovel` decimal,
-  `area_imovel` decimal,
+  `valor_imovel` decimal(12,2),
+  `area_imovel` decimal(12,2),
   `ano_construcao` int
 );
 
@@ -24,13 +24,13 @@ CREATE TABLE IF NOT EXISTS `apolice` (
   `id_imovel` int,
   `dt_inicio` date,
   `dt_termino` date,
-  `valor_apolice` decimal
+  `valor_apolice` decimal(12,2)
 );
 
 CREATE TABLE IF NOT EXISTS `cobertura` (
   `id_cobertura` int PRIMARY KEY,
   `descricao` varchar(255),
-  `valor` decimal
+  `valor` decimal(12,2)
 );
 
 CREATE TABLE IF NOT EXISTS `apolice_cobertura` (
@@ -43,21 +43,21 @@ CREATE TABLE IF NOT EXISTS `sinistro` (
   `id_apolice` int,
   `dt_sinistro` date,
   `descricao` varchar(255),
-  `valor_sinistro` decimal
+  `valor_sinistro` decimal(12,2)
 );
 
 CREATE TABLE IF NOT EXISTS `pagamento` (
   `id_pagamento` int PRIMARY KEY,
   `id_apolice` int,
   `dt_pagamento` date,
-  `valor_pagamento` decimal
+  `valor_pagamento` decimal(12,2)
 );
 
 CREATE TABLE IF NOT EXISTS `avaliacao` (
   `id_avaliacao` int PRIMARY KEY,
   `id_imovel` int,
   `dt_avaliacao` date,
-  `valor_avaliado` decimal
+  `valor_avaliado` decimal(12,2)
 );
 
 ALTER TABLE `imovel` ADD FOREIGN KEY (`id_proprietario`) REFERENCES `cliente` (`id_cliente`);
