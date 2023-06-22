@@ -13,3 +13,11 @@ FROM apolice a
 JOIN pagamento p ON a.id_apolice = p.id_apolice
 WHERE p.dt_pagamento > a.dt_termino
 ORDER BY a.id_apolice, p.dt_pagamento;
+
+--3) Consulta de apólices com coberturas abrangentes:
+SELECT a.id_apolice, a.dt_inicio, a.dt_termino, GROUP_CONCAT(c.descricao SEPARATOR ', ') AS coberturas
+FROM apolice a
+JOIN apolice_cobertura ac ON a.id_apolice = ac.id_apolice
+JOIN cobertura c ON ac.id_cobertura = c.id_cobertura
+GROUP BY a.id_apolice, a.dt_inicio, a.dt_termino
+HAVING COUNT(ac.id_cobertura) = (SELECT COUNT(*) FROM cobertura);
