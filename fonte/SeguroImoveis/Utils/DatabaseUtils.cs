@@ -1,6 +1,6 @@
 ﻿namespace SeguroImoveis.Utils
 {
-    public class DatabaseUtils
+    public static class DatabaseUtils
     {
         public static string GetScript(string name)
         {
@@ -10,6 +10,11 @@
                 path = DirectoryUtils.GetParent(path);
 
             return File.ReadAllText($@"{DirectoryUtils.GetParent(path)}\scripts\{name}");
+        }
+
+        public static string FormatToDate(string date)
+        {
+            return DateTime.Parse(date).ToString("yyyy-MM-dd");
         }
     }
 }
