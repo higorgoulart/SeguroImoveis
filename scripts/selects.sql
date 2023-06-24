@@ -28,9 +28,8 @@ FROM imovel i
 LEFT JOIN avaliacao a ON i.id_imovel = a.id_imovel
 GROUP BY i.tipo_imovel;
 
---5)Consulta de pagamentos atrasados por apólice:
-SELECT a.id_apolice, a.dt_inicio, a.dt_termino, p.dt_pagamento, p.valor_pagamento
-FROM apolice a
-JOIN pagamento p ON a.id_apolice = p.id_apolice
-WHERE p.dt_pagamento > a.dt_termino
-ORDER BY a.id_apolice, p.dt_pagamento;
+--5)Consulta de valor total de sinistros por mês:
+SELECT MONTH(s.dt_sinistro) AS mes, YEAR(s.dt_sinistro) AS ano, SUM(s.valor_sinistro) AS valor_total_sinistros
+FROM sinistro s
+GROUP BY mes, ano
+ORDER BY ano, mes;
