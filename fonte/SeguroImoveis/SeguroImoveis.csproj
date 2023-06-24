@@ -112,6 +112,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CadastroApolice.Designer.cs" />
+    <Compile Include="Models\ApoliceViewModel.cs" />
     <Compile Include="Utils\DatabaseUtils.cs" />
     <Compile Include="Utils\DirectoryUtils.cs" />
     <Compile Include="Menu.cs">
@@ -143,6 +144,15 @@
       <DependentUpon>Relatorio.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\AtualizacaoApolice.datasource" />
+    <None Include="Properties\DataSources\CadastroApolice.datasource" />
+    <None Include="Properties\DataSources\Menu.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\Relatorio.datasource" />
+    <None Include="Properties\DataSources\SeguroImoveis.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\SeguroImoveis.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\SeguroImoveis.Utils.DatabaseUtils.datasource" />
+    <None Include="Properties\DataSources\SeguroImoveis.Utils.DirectoryUtils.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
