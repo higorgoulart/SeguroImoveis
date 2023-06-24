@@ -1,4 +1,7 @@
-﻿namespace SeguroImoveis.Utils
+﻿using System;
+using System.IO;
+
+namespace SeguroImoveis.Utils
 {
     public static class DatabaseUtils
     {

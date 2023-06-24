@@ -1,4 +1,6 @@
-﻿namespace SeguroImoveis.Utils
+﻿using System.IO;
+
+namespace SeguroImoveis.Utils
 {
     public static class DirectoryUtils
     {

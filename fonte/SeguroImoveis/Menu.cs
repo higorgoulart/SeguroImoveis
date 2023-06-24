@@ -36,6 +36,11 @@ namespace SeguroImoveis
             new AtualizacaoApolice(_conexao).ShowDialog();
         }
 
+        private void btRelatorio_Click(object sender, EventArgs e)
+        {
+            new Relatorio(_conexao).ShowDialog();
+        }
+
         private void CreateTables()
         {
             try

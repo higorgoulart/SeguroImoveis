@@ -1,4 +1,7 @@
-﻿namespace SeguroImoveis
+﻿using System.Drawing;
+using System.Windows.Forms;
+
+namespace SeguroImoveis
 {
     partial class Menu
     {
@@ -75,6 +78,7 @@
             btRelatorio.TabIndex = 3;
             btRelatorio.Text = "Relatório";
             btRelatorio.UseVisualStyleBackColor = true;
+            btRelatorio.Click += btRelatorio_Click;
             // 
             // Menu
             // 
