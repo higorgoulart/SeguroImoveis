@@ -18,7 +18,7 @@ namespace SeguroImoveis
 
         public Menu()
         {
-            _conexao = new MySqlConnection("Server=localhost;Database=seguradora_imovel;Uid=root;Pwd=;");
+            _conexao = new MySqlConnection("Server=localhost;Database=seguradora_imovel;Uid=root;Pwd=root;");
 
             CreateTables();
             AddDefaultData();
@@ -34,6 +34,11 @@ namespace SeguroImoveis
         private void btEditarApolice_Click(object sender, EventArgs e)
         {
             new AtualizacaoApolice(_conexao).ShowDialog();
+        }
+
+        private void btExcluirApolice_Click(object sender, EventArgs e)
+        {
+            new ExcluirApolice(_conexao).ShowDialog();
         }
 
         private void btRelatorio_Click(object sender, EventArgs e)
@@ -61,6 +66,21 @@ namespace SeguroImoveis
         {
             try
             {
+                if (!_conexao.State.Equals(ConnectionState.Open))
+                    _conexao.Open();
+
+                var script = $@"SELECT EXISTS (SELECT 1 FROM apolice);";
+
+                var command = new MySqlCommand(script, _conexao);
+
+                using (var cursor = command.ExecuteReader())
+                {
+                    while (cursor.Read())
+                    {
+                        return;
+                    }
+                }
+
                 ExecuteCommand(DatabaseUtils.GetScript("insert.sql"));
             }
             catch (Exception ex)
@@ -81,5 +101,83 @@ namespace SeguroImoveis
 
             command.ExecuteReader();
         }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.btCadastroApolice = new System.Windows.Forms.Button();
+            this.btEditarApolice = new System.Windows.Forms.Button();
+            this.btExcluirApolice = new System.Windows.Forms.Button();
+            this.btRelatorio = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btCadastroApolice
+            // 
+            this.btCadastroApolice.Location = new System.Drawing.Point(10, 10);
+            this.btCadastroApolice.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btCadastroApolice.Name = "btCadastroApolice";
+            this.btCadastroApolice.Size = new System.Drawing.Size(120, 33);
+            this.btCadastroApolice.TabIndex = 0;
+            this.btCadastroApolice.Text = "Cadastrar apólice";
+            this.btCadastroApolice.UseVisualStyleBackColor = true;
+            // 
+            // btEditarApolice
+            // 
+            this.btEditarApolice.Location = new System.Drawing.Point(136, 10);
+            this.btEditarApolice.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btEditarApolice.Name = "btEditarApolice";
+            this.btEditarApolice.Size = new System.Drawing.Size(120, 33);
+            this.btEditarApolice.TabIndex = 1;
+            this.btEditarApolice.Text = "Editar apólice";
+            this.btEditarApolice.UseVisualStyleBackColor = true;
+            // 
+            // btExcluirApolice
+            // 
+            this.btExcluirApolice.Location = new System.Drawing.Point(260, 10);
+            this.btExcluirApolice.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btExcluirApolice.Name = "btExcluirApolice";
+            this.btExcluirApolice.Size = new System.Drawing.Size(120, 33);
+            this.btExcluirApolice.TabIndex = 2;
+            this.btExcluirApolice.Text = "Excluir apólice";
+            this.btExcluirApolice.UseVisualStyleBackColor = true;
+            this.btExcluirApolice.Click += new System.EventHandler(this.btExcluirApolice_Click);
+            // 
+            // btRelatorio
+            // 
+            this.btRelatorio.Location = new System.Drawing.Point(386, 10);
+            this.btRelatorio.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.btRelatorio.Name = "btRelatorio";
+            this.btRelatorio.Size = new System.Drawing.Size(120, 33);
+            this.btRelatorio.TabIndex = 3;
+            this.btRelatorio.Text = "Relatório";
+            this.btRelatorio.UseVisualStyleBackColor = true;
+            // 
+            // Menu
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(520, 54);
+            this.Controls.Add(this.btRelatorio);
+            this.Controls.Add(this.btExcluirApolice);
+            this.Controls.Add(this.btEditarApolice);
+            this.Controls.Add(this.btCadastroApolice);
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.Name = "Menu";
+            this.Text = "Menu";
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private Button btCadastroApolice;
+        private Button btEditarApolice;
+        private Button btExcluirApolice;
+        private Button btRelatorio;
     }
 }

@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace SeguroImoveis
 {
-    partial class Menu
+    partial class ExcluirApolice
     {
         /// <summary>
         /// Required designer variable.
