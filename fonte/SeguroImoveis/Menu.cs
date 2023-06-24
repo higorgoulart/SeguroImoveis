@@ -18,7 +18,7 @@ namespace SeguroImoveis
 
         public Menu()
         {
-            _conexao = new MySqlConnection("Server=localhost;Database=seguradora_imovel;Uid=root;Pwd=root;");
+            _conexao = new MySqlConnection("Server=localhost;Database=seguradora_imovel;Uid=root;Pwd=;");
 
             CreateTables();
             AddDefaultData();
@@ -26,25 +26,13 @@ namespace SeguroImoveis
             InitializeComponent();
         }
 
-        private void btCadastroApolice_Click(object sender, EventArgs e)
-        {
-            new CadastroApolice(_conexao).ShowDialog();
-        }
+        private void btCadastroApolice_Click(object sender, EventArgs e) => new CadastroApolice(_conexao).ShowDialog();
 
-        private void btEditarApolice_Click(object sender, EventArgs e)
-        {
-            new AtualizacaoApolice(_conexao).ShowDialog();
-        }
+        private void btEditarApolice_Click(object sender, EventArgs e) => new AtualizacaoApolice(_conexao).ShowDialog();
 
-        private void btExcluirApolice_Click(object sender, EventArgs e)
-        {
-            new ExcluirApolice(_conexao).ShowDialog();
-        }
+        private void btExcluirApolice_Click(object sender, EventArgs e) => new ExcluirApolice(_conexao).ShowDialog();
 
-        private void btRelatorio_Click(object sender, EventArgs e)
-        {
-            new Relatorio(_conexao).ShowDialog();
-        }
+        private void btRelatorio_Click(object sender, EventArgs e) => new Relatorio(_conexao).ShowDialog();
 
         private void CreateTables()
         {
@@ -66,8 +54,7 @@ namespace SeguroImoveis
         {
             try
             {
-                if (!_conexao.State.Equals(ConnectionState.Open))
-                    _conexao.Open();
+                _conexao.Open();
 
                 var script = $@"SELECT EXISTS (SELECT 1 FROM apolice);";
 
@@ -102,8 +89,6 @@ namespace SeguroImoveis
             command.ExecuteReader();
         }
 
-        #region Windows Form Designer generated code
-
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -125,6 +110,7 @@ namespace SeguroImoveis
             this.btCadastroApolice.TabIndex = 0;
             this.btCadastroApolice.Text = "Cadastrar apólice";
             this.btCadastroApolice.UseVisualStyleBackColor = true;
+            this.btCadastroApolice.Click += new System.EventHandler(this.btCadastroApolice_Click);
             // 
             // btEditarApolice
             // 
@@ -135,6 +121,7 @@ namespace SeguroImoveis
             this.btEditarApolice.TabIndex = 1;
             this.btEditarApolice.Text = "Editar apólice";
             this.btEditarApolice.UseVisualStyleBackColor = true;
+            this.btEditarApolice.Click += new System.EventHandler(this.btEditarApolice_Click);
             // 
             // btExcluirApolice
             // 
@@ -156,6 +143,7 @@ namespace SeguroImoveis
             this.btRelatorio.TabIndex = 3;
             this.btRelatorio.Text = "Relatório";
             this.btRelatorio.UseVisualStyleBackColor = true;
+            this.btRelatorio.Click += new System.EventHandler(this.btRelatorio_Click);
             // 
             // Menu
             // 
@@ -172,8 +160,6 @@ namespace SeguroImoveis
             this.ResumeLayout(false);
 
         }
-
-        #endregion
 
         private Button btCadastroApolice;
         private Button btEditarApolice;

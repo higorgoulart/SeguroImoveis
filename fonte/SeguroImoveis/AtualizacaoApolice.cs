@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using SeguroImoveis.Utils;
 using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace SeguroImoveis

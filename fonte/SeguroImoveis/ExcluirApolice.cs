@@ -1,21 +1,120 @@
 ﻿using MySql.Data.MySqlClient;
-using SeguroImoveis.Utils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SeguroImoveis
 {
     public partial class ExcluirApolice : Form
     {
+        private DateTimePicker dtTermino;
+        private DateTimePicker dtInicio;
+        private TextBox tbValor;
+        private Label lbValor;
+        private Label lbDtTermino;
+        private Label lbDtInicio;
+        private TextBox tbIdImovel;
+        private Label lbIdImovel;
+        private TextBox tbIdApolice;
+        private Label lbIdApolice;
+        private Button btPesquisar;
+        private Button btExcluir;
+
         private readonly MySqlConnection _conexao;
+
+        public ExcluirApolice(MySqlConnection conexao)
+        {
+            _conexao = conexao;
+
+            InitializeComponent();
+
+            ExibirCampos(false);
+        }
+
+        private void btPesquisar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(tbIdApolice.Text))
+                    throw new Exception("Preencha o ID da apólice!");
+
+                var script = $@"
+                    SELECT id_apolice, id_imovel, dt_inicio, dt_termino, valor_apolice from apolice 
+                    WHERE id_apolice = {tbIdApolice.Text}";
+
+                var command = new MySqlCommand(script, _conexao);
+
+                bool resultadoEncontrado = false;
+
+                _conexao.Open();
+
+                using (var cursor = command.ExecuteReader())
+                {
+                    while (cursor.Read())
+                    {
+                        resultadoEncontrado = true;
+                        tbIdImovel.Text = cursor["id_imovel"].ToString();
+                        dtInicio.Text = cursor["dt_inicio"].ToString();
+                        dtTermino.Text = cursor["dt_termino"].ToString();
+                        tbValor.Text = cursor["valor_apolice"].ToString();
+                    }
+                }
+
+                if (resultadoEncontrado)
+                {
+                    ExibirCampos(true);
+                }
+                else
+                {
+                    MessageBox.Show("Não foi encontrada apólice com o ID: " + tbIdApolice.Text);
+                }
+            }
+            finally
+            {
+                _conexao.Close();
+            } 
+        }   
+
+        private void btExcluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (tbIdApolice.Text == "")
+                    throw new Exception("Preencha o ID da apólice!");
+
+                var script = $@"DELETE FROM apolice WHERE id_apolice = {tbIdApolice.Text}";
+
+                var command = new MySqlCommand(script, _conexao);
+
+                _conexao.Open();
+
+                command.ExecuteReader();
+
+                MessageBox.Show("Excluido com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                _conexao.Close();
+            }
+        }
+
+        private void ExibirCampos(bool exibir)
+        {
+            tbIdImovel.Visible = exibir;
+            lbIdImovel.Visible = exibir;
+            dtInicio.Visible = exibir;
+            lbDtInicio.Visible = exibir;
+            dtTermino.Visible = exibir;
+            lbDtTermino.Visible = exibir;
+            tbValor.Visible = exibir;
+            lbValor.Visible = exibir;
+            btExcluir.Visible = exibir;
+            btExcluir.Enabled = exibir;
+        }
 
         private void InitializeComponent()
         {
@@ -175,120 +274,6 @@ namespace SeguroImoveis
             Text = "Exclusão de apólice";
             ResumeLayout(false);
             PerformLayout();
-        }
-
-        private DateTimePicker dtTermino;
-        private DateTimePicker dtInicio;
-        private TextBox tbValor;
-        private Label lbValor;
-        private Label lbDtTermino;
-        private Label lbDtInicio;
-        private TextBox tbIdImovel;
-        private Label lbIdImovel;
-        private TextBox tbIdApolice;
-        private Label lbIdApolice;
-        private Button btPesquisar;
-        private Button btExcluir;
-    
-
-    public ExcluirApolice(MySqlConnection conexao)
-        {
-            _conexao = conexao;
-
-            InitializeComponent();
-            ExibirCampos(false);
-        }
-
-        private void btPesquisar_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(tbIdApolice.Text))
-                throw new Exception("Preencha o ID da apólice!");
-
-            var script = $@"
-                    SELECT id_apolice, id_imovel, dt_inicio, dt_termino, valor_apolice from apolice 
-                    WHERE id_apolice = 
-            {tbIdApolice.Text}";
-
-            var command = new MySqlCommand(script, _conexao);
-
-            bool resultadoEncontrado = false;
-
-            if (!_conexao.State.Equals(ConnectionState.Open))
-            {
-                _conexao.Open();
-            }
-
-            using (var cursor = command.ExecuteReader())
-            {
-                while (cursor.Read())
-                {
-                    resultadoEncontrado = true;
-                    tbIdImovel.Text = cursor["id_imovel"].ToString();
-                    dtInicio.Text = cursor["dt_inicio"].ToString();
-                    dtTermino.Text = cursor["dt_termino"].ToString();
-                    tbValor.Text = cursor["valor_apolice"].ToString();
-                }
-            }
-
-            if (resultadoEncontrado)
-            {
-                ExibirCampos(true);
-            }
-            else
-            {
-                MessageBox.Show("Não foi encontrada apólice com o Id: " + tbIdApolice.Text);
-            }
-        }
-
-        private void ExibirCampos(bool exibir)
-        {
-            tbIdImovel.Visible = exibir;
-            lbIdImovel.Visible = exibir;
-            dtInicio.Visible = exibir;
-            lbDtInicio.Visible = exibir;
-            dtTermino.Visible = exibir;
-            lbDtTermino.Visible = exibir;
-            tbValor.Visible = exibir;
-            lbValor.Visible = exibir;
-            btExcluir.Visible = exibir;
-            btExcluir.Enabled = exibir;
-        }
-
-        private void btExcluir_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (tbIdApolice.Text == "")
-                {
-                    throw new Exception("Preencha o ID da apólice!");
-                }
-
-                var script = $@"
-                    DELETE FROM 
-                        apolice 
-                    WHERE
-                        id_apolice = 
-                {tbIdApolice.Text}";
-
-                var command = new MySqlCommand(script, _conexao);
-
-                if (!_conexao.State.Equals(ConnectionState.Open))
-                {
-                    _conexao.Open();
-                }
-
-                command.ExecuteReader();
-
-                MessageBox.Show("Excluido com sucesso!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                _conexao.Close();
-            }
         }
     }
 }

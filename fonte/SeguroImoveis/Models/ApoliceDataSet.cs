@@ -2,7 +2,7 @@
 
 namespace SeguroImoveis.Models
 {
-    public class ApoliceViewModel
+    public class ApoliceDataSet
     {
         public string Cliente { get; set; }
         public DateTime DtInicio { get; set; }
@@ -13,7 +13,7 @@ namespace SeguroImoveis.Models
         public string Cobertura { get; set; }
         public bool Vigente { get; set; }
 
-        public ApoliceViewModel(
+        public ApoliceDataSet(
             string cliente,
             DateTime dtInicio,
             DateTime dtTermino,
