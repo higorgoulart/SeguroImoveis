@@ -6,26 +6,25 @@ AS
 BEGIN
 
 SELECT c.nome,
-	   a.dt_inicio as datainicial,
-	   a.dt_termino as datafinal,
-	   a.valor_apolice,
-	   i.id_imovel,
-	   CASE WHEN EXISTS (SELECT 1 FROM sinistro s WHERE s.id_apolice = a.id_apolice) THEN 'Sim' ELSE 'Não' END AS tem_sinistro,
-	   (
-		   SELECT STUFF(
-			   (
-				   SELECT ', ' + co.descricao
-				   FROM cobertura co
-				   INNER JOIN apolice_cobertura ac ON ac.id_cobertura = co.id_cobertura
-				   WHERE ac.id_apolice = a.id_apolice
-				   FOR XML PATH('')
-			   ), 1, 2, ''
-		   )
+       a.dt_inicio as datainicial,
+       a.dt_termino as datafinal,
+       a.valor_apolice,
+       i.id_imovel,
+       CASE WHEN EXISTS (SELECT 1 FROM sinistro s WHERE s.id_apolice = a.id_apolice) THEN 'Sim' ELSE 'Não' END AS tem_sinistro,
+       (
+              SELECT STUFF(
+              (
+                     SELECT ', ' + co.descricao
+                       FROM cobertura co
+                      INNER JOIN apolice_cobertura ac ON ac.id_cobertura = co.id_cobertura
+                      WHERE ac.id_apolice = a.id_apolice
+                        FOR XML PATH('')
+		), 1, 2, '')
 	   ) AS coberturas,
-	   CASE WHEN getdate() between a.dt_inicio and a.dt_termino then 'Sim' ELSE 'Não' END as esta_vigente	
-FROM cliente c	
-join imovel i on i.id_proprietario = c.id_cliente
-join apolice a on a.id_imovel = i.id_imovel
-where a.dt_inicio between @dataini and @datafim
+       CASE WHEN getdate() between a.dt_inicio and a.dt_termino then 'Sim' ELSE 'Não' END as esta_vigente	
+  FROM cliente c	
+  join imovel i on i.id_proprietario = c.id_cliente
+  join apolice a on a.id_imovel = i.id_imovel
+ where a.dt_inicio between @dataini and @datafim
 
 END
