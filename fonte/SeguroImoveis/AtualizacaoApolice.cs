@@ -41,12 +41,15 @@ namespace SeguroImoveis
 
                 var command = new MySqlCommand(script, _conexao);
 
+                bool resultadoEncontrado = false;
+
                 _conexao.Open();
 
                 using (var cursor = command.ExecuteReader())
                 {
                     while (cursor.Read())
                     {
+                        resultadoEncontrado = true;
                         tbIdImovel.Text = cursor["id_imovel"].ToString();
                         dtInicio.Text = cursor["dt_inicio"].ToString();
                         dtTermino.Text = cursor["dt_termino"].ToString();
@@ -54,9 +57,10 @@ namespace SeguroImoveis
                     }
                 }
 
-                HabilitarCampos(true);
-
-                MessageBox.Show("Tudo certo!");
+                if (resultadoEncontrado)
+                    HabilitarCampos(true);
+                else
+                    MessageBox.Show("Não foi encontrada apólice com o ID: " + tbIdApolice.Text);
             }
             catch (Exception ex)
             {
@@ -87,7 +91,7 @@ namespace SeguroImoveis
                         id_imovel = {tbIdImovel.Text}, 
                         dt_inicio = '{DatabaseUtils.FormatToDate(dtInicio.Text)}', 
                         dt_termino = '{DatabaseUtils.FormatToDate(dtTermino.Text)}', 
-                        valor_apolice = {tbValor.Text}
+                        valor_apolice = {DatabaseUtils.FormatToDecimal(tbValor.Text)}
                     WHERE
                         id_apolice = {tbIdApolice.Text}";
 
@@ -165,7 +169,7 @@ namespace SeguroImoveis
             this.lbValor.AutoSize = true;
             this.lbValor.Location = new System.Drawing.Point(12, 151);
             this.lbValor.Name = "lbValor";
-            this.lbValor.Size = new System.Drawing.Size(33, 15);
+            this.lbValor.Size = new System.Drawing.Size(46, 20);
             this.lbValor.TabIndex = 6;
             this.lbValor.Text = "Valor";
             // 
@@ -174,7 +178,7 @@ namespace SeguroImoveis
             this.lbDtTermino.AutoSize = true;
             this.lbDtTermino.Location = new System.Drawing.Point(12, 122);
             this.lbDtTermino.Name = "lbDtTermino";
-            this.lbDtTermino.Size = new System.Drawing.Size(92, 15);
+            this.lbDtTermino.Size = new System.Drawing.Size(123, 20);
             this.lbDtTermino.TabIndex = 7;
             this.lbDtTermino.Text = "Data de término";
             // 
@@ -183,7 +187,7 @@ namespace SeguroImoveis
             this.lbDtInicio.AutoSize = true;
             this.lbDtInicio.Location = new System.Drawing.Point(12, 93);
             this.lbDtInicio.Name = "lbDtInicio";
-            this.lbDtInicio.Size = new System.Drawing.Size(79, 15);
+            this.lbDtInicio.Size = new System.Drawing.Size(105, 20);
             this.lbDtInicio.TabIndex = 8;
             this.lbDtInicio.Text = "Data de início";
             // 
@@ -200,7 +204,7 @@ namespace SeguroImoveis
             this.lbIdImovel.AutoSize = true;
             this.lbIdImovel.Location = new System.Drawing.Point(12, 64);
             this.lbIdImovel.Name = "lbIdImovel";
-            this.lbIdImovel.Size = new System.Drawing.Size(74, 15);
+            this.lbIdImovel.Size = new System.Drawing.Size(96, 20);
             this.lbIdImovel.TabIndex = 9;
             this.lbIdImovel.Text = "ID do imóvel";
             // 
@@ -216,7 +220,7 @@ namespace SeguroImoveis
             this.lbIdApolice.AutoSize = true;
             this.lbIdApolice.Location = new System.Drawing.Point(12, 9);
             this.lbIdApolice.Name = "lbIdApolice";
-            this.lbIdApolice.Size = new System.Drawing.Size(75, 15);
+            this.lbIdApolice.Size = new System.Drawing.Size(102, 20);
             this.lbIdApolice.TabIndex = 10;
             this.lbIdApolice.Text = "ID da apólice";
             // 
@@ -229,6 +233,7 @@ namespace SeguroImoveis
             this.btAtualizar.TabIndex = 11;
             this.btAtualizar.Text = "Atualizar";
             this.btAtualizar.UseVisualStyleBackColor = true;
+            this.btAtualizar.Click += new System.EventHandler(this.btAtualizar_Click);
             // 
             // btPesquisar
             // 
@@ -238,22 +243,23 @@ namespace SeguroImoveis
             this.btPesquisar.TabIndex = 17;
             this.btPesquisar.Text = "Pesquisar";
             this.btPesquisar.UseVisualStyleBackColor = true;
+            this.btPesquisar.Click += new System.EventHandler(this.btPesquisar_Click);
             // 
             // AtualizacaoApolice
             // 
             this.ClientSize = new System.Drawing.Size(510, 202);
-            this.Controls.Add(btPesquisar);
-            this.Controls.Add(dtTermino);
-            this.Controls.Add(dtInicio);
-            this.Controls.Add(tbValor);
-            this.Controls.Add(lbValor);
-            this.Controls.Add(lbDtTermino);
-            this.Controls.Add(lbDtInicio);
-            this.Controls.Add(tbIdImovel);
-            this.Controls.Add(lbIdImovel);
-            this.Controls.Add(tbIdApolice);
-            this.Controls.Add(lbIdApolice);
-            this.Controls.Add(btAtualizar);
+            this.Controls.Add(this.btPesquisar);
+            this.Controls.Add(this.dtTermino);
+            this.Controls.Add(this.dtInicio);
+            this.Controls.Add(this.tbValor);
+            this.Controls.Add(this.lbValor);
+            this.Controls.Add(this.lbDtTermino);
+            this.Controls.Add(this.lbDtInicio);
+            this.Controls.Add(this.tbIdImovel);
+            this.Controls.Add(this.lbIdImovel);
+            this.Controls.Add(this.tbIdApolice);
+            this.Controls.Add(this.lbIdApolice);
+            this.Controls.Add(this.btAtualizar);
             this.Name = "AtualizacaoApolice";
             this.ResumeLayout(false);
             this.PerformLayout();

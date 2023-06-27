@@ -1,8 +1,10 @@
 ﻿using Microsoft.Reporting.WinForms;
 using MySql.Data.MySqlClient;
 using SeguroImoveis.Models;
+using SeguroImoveis.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace SeguroImoveis
@@ -15,33 +17,55 @@ namespace SeguroImoveis
         private Label lbDtTermino;
         private Label lbDtInicio;
         private Button btPesquisar;
+
         private readonly MySqlConnection _conexao;
 
         public Relatorio(MySqlConnection conexao)
         {
             _conexao = conexao;
+
             InitializeComponent();
 
-            // Retrieve the data for the report
-            List<ApoliceDataSet> apoliceData = GetApoliceData();
-
-            // Create a report data source and assign the retrieved data
-            ReportDataSource rs = new ReportDataSource
-            {
-                Name = "ApoliceDataSet",
-                Value = apoliceData
-            };
-
-            // Clear existing data sources and add the new one
-            reportViewer1.LocalReport.DataSources.Clear();
-            reportViewer1.LocalReport.DataSources.Add(rs);
-
-            // Refresh the report
-            reportViewer1.RefreshReport();
+            
         }
 
         private List<ApoliceDataSet> GetApoliceData()
         {
+            try
+            {
+                var command = new MySqlCommand();
+
+                _conexao.Open();
+
+                command.Connection = _conexao;
+
+                command.CommandText = "DROP PROCEDURE IF EXISTS sp_relatorio1";
+                command.ExecuteNonQuery();
+
+                command.CommandText = DatabaseUtils.GetScript("bd.sql");
+                command.ExecuteNonQuery();
+
+                command.CommandText = "sp_relatorio1";
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@dataini", DatabaseUtils.FormatToDate(dtInicio.Text));
+                command.Parameters["@dataini"].Direction = ParameterDirection.Input;
+                command.Parameters.AddWithValue("@datafim", DatabaseUtils.FormatToDate(dtTermino.Text));
+                command.Parameters["@datafim"].Direction = ParameterDirection.Input;
+                command.ExecuteNonQuery();
+
+                using (var cursor = command.ExecuteReader())
+                {
+                    while (cursor.Read())
+                    {
+                        
+                    }
+                }
+            }
+            finally
+            {
+                _conexao.Close();
+            }
+
             List<ApoliceDataSet> data = new List<ApoliceDataSet>
             {
                 new ApoliceDataSet("Claudio", DateTime.Today, DateTime.Today, 10.5M, "AAA", true, "AA", false),
@@ -59,8 +83,22 @@ namespace SeguroImoveis
 
         private void btPesquisar_Click(object sender, EventArgs e)
         {
-            this.reportViewer1.DataBindings.Clear();
-            this.reportViewer1.RefreshReport();
+            // Retrieve the data for the report
+            List<ApoliceDataSet> apoliceData = GetApoliceData();
+
+            // Create a report data source and assign the retrieved data
+            ReportDataSource rs = new ReportDataSource
+            {
+                Name = "ApoliceDataSet",
+                Value = apoliceData
+            };
+
+            // Clear existing data sources and add the new one
+            reportViewer1.LocalReport.DataSources.Clear();
+            reportViewer1.LocalReport.DataSources.Add(rs);
+
+            // Refresh the report
+            reportViewer1.RefreshReport();
         }
 
         private void InitializeComponent()

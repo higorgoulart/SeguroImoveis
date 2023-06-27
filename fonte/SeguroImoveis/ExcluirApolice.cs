@@ -118,162 +118,176 @@ namespace SeguroImoveis
 
         private void InitializeComponent()
         {
-            dtTermino = new DateTimePicker();
-            dtInicio = new DateTimePicker();
-            tbValor = new TextBox();
-            lbValor = new Label();
-            lbDtTermino = new Label();
-            lbDtInicio = new Label();
-            tbIdImovel = new TextBox();
-            lbIdImovel = new Label();
-            tbIdApolice = new TextBox();
-            lbIdApolice = new Label();
-            btPesquisar = new Button();
-            btExcluir = new Button();
-            SuspendLayout();
+            this.dtTermino = new System.Windows.Forms.DateTimePicker();
+            this.dtInicio = new System.Windows.Forms.DateTimePicker();
+            this.tbValor = new System.Windows.Forms.TextBox();
+            this.lbValor = new System.Windows.Forms.Label();
+            this.lbDtTermino = new System.Windows.Forms.Label();
+            this.lbDtInicio = new System.Windows.Forms.Label();
+            this.tbIdImovel = new System.Windows.Forms.TextBox();
+            this.lbIdImovel = new System.Windows.Forms.Label();
+            this.tbIdApolice = new System.Windows.Forms.TextBox();
+            this.lbIdApolice = new System.Windows.Forms.Label();
+            this.btPesquisar = new System.Windows.Forms.Button();
+            this.btExcluir = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // dtTermino
             // 
-            dtTermino.Enabled = false;
-            dtTermino.Format = DateTimePickerFormat.Short;
-            dtTermino.Location = new Point(104, 99);
-            dtTermino.Name = "dtTermino";
-            dtTermino.Size = new Size(235, 23);
-            dtTermino.TabIndex = 14;
-            dtTermino.Visible = false;
+            this.dtTermino.Enabled = false;
+            this.dtTermino.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtTermino.Location = new System.Drawing.Point(134, 132);
+            this.dtTermino.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtTermino.Name = "dtTermino";
+            this.dtTermino.Size = new System.Drawing.Size(301, 26);
+            this.dtTermino.TabIndex = 14;
+            this.dtTermino.Visible = false;
             // 
             // dtInicio
             // 
-            dtInicio.Enabled = false;
-            dtInicio.Format = DateTimePickerFormat.Short;
-            dtInicio.Location = new Point(106, 70);
-            dtInicio.Name = "dtInicio";
-            dtInicio.Size = new Size(235, 23);
-            dtInicio.TabIndex = 13;
-            dtInicio.Visible = false;
+            this.dtInicio.Enabled = false;
+            this.dtInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtInicio.Location = new System.Drawing.Point(136, 93);
+            this.dtInicio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtInicio.Name = "dtInicio";
+            this.dtInicio.Size = new System.Drawing.Size(301, 26);
+            this.dtInicio.TabIndex = 13;
+            this.dtInicio.Visible = false;
             // 
             // tbValor
             // 
-            tbValor.Enabled = false;
-            tbValor.Location = new Point(103, 128);
-            tbValor.Name = "tbValor";
-            tbValor.ReadOnly = true;
-            tbValor.Size = new Size(238, 23);
-            tbValor.TabIndex = 15;
-            tbValor.Visible = false;
+            this.tbValor.Enabled = false;
+            this.tbValor.Location = new System.Drawing.Point(132, 171);
+            this.tbValor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbValor.Name = "tbValor";
+            this.tbValor.ReadOnly = true;
+            this.tbValor.Size = new System.Drawing.Size(305, 26);
+            this.tbValor.TabIndex = 15;
+            this.tbValor.Visible = false;
             // 
             // lbValor
             // 
-            lbValor.AutoSize = true;
-            lbValor.Enabled = false;
-            lbValor.Location = new Point(6, 131);
-            lbValor.Name = "lbValor";
-            lbValor.Size = new Size(33, 15);
-            lbValor.TabIndex = 6;
-            lbValor.Text = "Valor";
-            lbValor.Visible = false;
+            this.lbValor.AutoSize = true;
+            this.lbValor.Enabled = false;
+            this.lbValor.Location = new System.Drawing.Point(8, 175);
+            this.lbValor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbValor.Name = "lbValor";
+            this.lbValor.Size = new System.Drawing.Size(46, 20);
+            this.lbValor.TabIndex = 6;
+            this.lbValor.Text = "Valor";
+            this.lbValor.Visible = false;
             // 
             // lbDtTermino
             // 
-            lbDtTermino.AutoSize = true;
-            lbDtTermino.Enabled = false;
-            lbDtTermino.Location = new Point(9, 99);
-            lbDtTermino.Name = "lbDtTermino";
-            lbDtTermino.Size = new Size(92, 15);
-            lbDtTermino.TabIndex = 7;
-            lbDtTermino.Text = "Data de término";
-            lbDtTermino.Visible = false;
+            this.lbDtTermino.AutoSize = true;
+            this.lbDtTermino.Enabled = false;
+            this.lbDtTermino.Location = new System.Drawing.Point(12, 132);
+            this.lbDtTermino.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbDtTermino.Name = "lbDtTermino";
+            this.lbDtTermino.Size = new System.Drawing.Size(123, 20);
+            this.lbDtTermino.TabIndex = 7;
+            this.lbDtTermino.Text = "Data de término";
+            this.lbDtTermino.Visible = false;
             // 
             // lbDtInicio
             // 
-            lbDtInicio.AutoSize = true;
-            lbDtInicio.Enabled = false;
-            lbDtInicio.Location = new Point(9, 73);
-            lbDtInicio.Name = "lbDtInicio";
-            lbDtInicio.Size = new Size(79, 15);
-            lbDtInicio.TabIndex = 8;
-            lbDtInicio.Text = "Data de início";
-            lbDtInicio.Visible = false;
+            this.lbDtInicio.AutoSize = true;
+            this.lbDtInicio.Enabled = false;
+            this.lbDtInicio.Location = new System.Drawing.Point(12, 97);
+            this.lbDtInicio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbDtInicio.Name = "lbDtInicio";
+            this.lbDtInicio.Size = new System.Drawing.Size(105, 20);
+            this.lbDtInicio.TabIndex = 8;
+            this.lbDtInicio.Text = "Data de início";
+            this.lbDtInicio.Visible = false;
             // 
             // tbIdImovel
             // 
-            tbIdImovel.Enabled = false;
-            tbIdImovel.Location = new Point(106, 41);
-            tbIdImovel.Name = "tbIdImovel";
-            tbIdImovel.Size = new Size(238, 23);
-            tbIdImovel.TabIndex = 12;
-            tbIdImovel.Visible = false;
+            this.tbIdImovel.Enabled = false;
+            this.tbIdImovel.Location = new System.Drawing.Point(136, 55);
+            this.tbIdImovel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbIdImovel.Name = "tbIdImovel";
+            this.tbIdImovel.Size = new System.Drawing.Size(305, 26);
+            this.tbIdImovel.TabIndex = 12;
+            this.tbIdImovel.Visible = false;
             // 
             // lbIdImovel
             // 
-            lbIdImovel.AutoSize = true;
-            lbIdImovel.Enabled = false;
-            lbIdImovel.Location = new Point(9, 44);
-            lbIdImovel.Name = "lbIdImovel";
-            lbIdImovel.Size = new Size(74, 15);
-            lbIdImovel.TabIndex = 9;
-            lbIdImovel.Text = "ID do imóvel";
-            lbIdImovel.Visible = false;
+            this.lbIdImovel.AutoSize = true;
+            this.lbIdImovel.Enabled = false;
+            this.lbIdImovel.Location = new System.Drawing.Point(12, 59);
+            this.lbIdImovel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbIdImovel.Name = "lbIdImovel";
+            this.lbIdImovel.Size = new System.Drawing.Size(96, 20);
+            this.lbIdImovel.TabIndex = 9;
+            this.lbIdImovel.Text = "ID do imóvel";
+            this.lbIdImovel.Visible = false;
             // 
             // tbIdApolice
             // 
-            tbIdApolice.Location = new Point(106, 12);
-            tbIdApolice.Name = "tbIdApolice";
-            tbIdApolice.Size = new Size(238, 23);
-            tbIdApolice.TabIndex = 11;
+            this.tbIdApolice.Location = new System.Drawing.Point(136, 16);
+            this.tbIdApolice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbIdApolice.Name = "tbIdApolice";
+            this.tbIdApolice.Size = new System.Drawing.Size(305, 26);
+            this.tbIdApolice.TabIndex = 11;
             // 
             // lbIdApolice
             // 
-            lbIdApolice.AutoSize = true;
-            lbIdApolice.Location = new Point(9, 15);
-            lbIdApolice.Name = "lbIdApolice";
-            lbIdApolice.Size = new Size(75, 15);
-            lbIdApolice.TabIndex = 10;
-            lbIdApolice.Text = "ID da apólice";
+            this.lbIdApolice.AutoSize = true;
+            this.lbIdApolice.Location = new System.Drawing.Point(12, 20);
+            this.lbIdApolice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbIdApolice.Name = "lbIdApolice";
+            this.lbIdApolice.Size = new System.Drawing.Size(102, 20);
+            this.lbIdApolice.TabIndex = 10;
+            this.lbIdApolice.Text = "ID da apólice";
             // 
             // btPesquisar
             // 
-            btPesquisar.Location = new Point(6, 186);
-            btPesquisar.Name = "btPesquisar";
-            btPesquisar.Size = new Size(149, 44);
-            btPesquisar.TabIndex = 16;
-            btPesquisar.Text = "Pesquisar";
-            btPesquisar.UseVisualStyleBackColor = true;
-            btPesquisar.Click += btPesquisar_Click;
+            this.btPesquisar.Location = new System.Drawing.Point(8, 248);
+            this.btPesquisar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btPesquisar.Name = "btPesquisar";
+            this.btPesquisar.Size = new System.Drawing.Size(192, 59);
+            this.btPesquisar.TabIndex = 16;
+            this.btPesquisar.Text = "Pesquisar";
+            this.btPesquisar.UseVisualStyleBackColor = true;
+            this.btPesquisar.Click += new System.EventHandler(this.btPesquisar_Click);
             // 
             // btExcluir
             // 
-            btExcluir.Enabled = false;
-            btExcluir.Location = new Point(195, 186);
-            btExcluir.Name = "btExcluir";
-            btExcluir.Size = new Size(149, 44);
-            btExcluir.TabIndex = 17;
-            btExcluir.Text = "Excluir";
-            btExcluir.UseVisualStyleBackColor = true;
-            btExcluir.Visible = false;
-            btExcluir.Click += btExcluir_Click;
+            this.btExcluir.Enabled = false;
+            this.btExcluir.Location = new System.Drawing.Point(251, 248);
+            this.btExcluir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btExcluir.Name = "btExcluir";
+            this.btExcluir.Size = new System.Drawing.Size(192, 59);
+            this.btExcluir.TabIndex = 17;
+            this.btExcluir.Text = "Excluir";
+            this.btExcluir.UseVisualStyleBackColor = true;
+            this.btExcluir.Visible = false;
+            this.btExcluir.Click += new System.EventHandler(this.btExcluir_Click);
             // 
             // ExcluirApolice
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(356, 242);
-            Controls.Add(btExcluir);
-            Controls.Add(btPesquisar);
-            Controls.Add(dtTermino);
-            Controls.Add(dtInicio);
-            Controls.Add(tbValor);
-            Controls.Add(lbValor);
-            Controls.Add(lbDtTermino);
-            Controls.Add(lbDtInicio);
-            Controls.Add(tbIdImovel);
-            Controls.Add(lbIdImovel);
-            Controls.Add(tbIdApolice);
-            Controls.Add(lbIdApolice);
-            Name = "ExcluirApolice";
-            Text = "Exclusão de apólice";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(458, 323);
+            this.Controls.Add(this.btExcluir);
+            this.Controls.Add(this.btPesquisar);
+            this.Controls.Add(this.dtTermino);
+            this.Controls.Add(this.dtInicio);
+            this.Controls.Add(this.tbValor);
+            this.Controls.Add(this.lbValor);
+            this.Controls.Add(this.lbDtTermino);
+            this.Controls.Add(this.lbDtInicio);
+            this.Controls.Add(this.tbIdImovel);
+            this.Controls.Add(this.lbIdImovel);
+            this.Controls.Add(this.tbIdApolice);
+            this.Controls.Add(this.lbIdApolice);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "ExcluirApolice";
+            this.Text = "Exclusão de apólice";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
     }
 }

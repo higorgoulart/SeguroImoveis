@@ -18,7 +18,7 @@ namespace SeguroImoveis
 
         public Menu()
         {
-            _conexao = new MySqlConnection("Server=localhost;Database=seguradora_imovel;Uid=root;Pwd=;");
+            _conexao = new MySqlConnection("Server=localhost;Database=seguradora_imovel;Uid=root;Pwd=;Allow User Variables=True;");
 
             CreateTables();
             AddDefaultData();
@@ -38,7 +38,11 @@ namespace SeguroImoveis
         {
             try
             {
-                ExecuteCommand(DatabaseUtils.GetScript("ddl.sql"));
+                var command = new MySqlCommand(DatabaseUtils.GetScript("ddl.sql"), _conexao);
+
+                _conexao.Open();
+
+                command.ExecuteReader();
             }
             catch (Exception ex)
             {
@@ -64,11 +68,13 @@ namespace SeguroImoveis
                 {
                     while (cursor.Read())
                     {
-                        return;
+                        if (Convert.ToInt32(cursor[0]) > 0)
+                            return;
                     }
                 }
 
-                ExecuteCommand(DatabaseUtils.GetScript("insert.sql"));
+                command = new MySqlCommand(DatabaseUtils.GetScript("insert.sql"), _conexao);
+                command.ExecuteReader();
             }
             catch (Exception ex)
             {
@@ -78,15 +84,6 @@ namespace SeguroImoveis
             {
                 _conexao.Close();
             }
-        }
-
-        private void ExecuteCommand(string script)
-        {
-            var command = new MySqlCommand(script, _conexao);
-
-            _conexao.Open();
-
-            command.ExecuteReader();
         }
 
         /// <summary>
