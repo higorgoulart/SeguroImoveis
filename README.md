@@ -14,10 +14,10 @@
 
 ### Modelo Físico:
 <div>
-    <img src="modelo_fisico/diagrama.png" style="heigh: 400px; width: 600px;">
+    <img src="modelo_fisico/er_diagram.png" style="heigh: 400px; width: 600px;">
 </div>
 
-Utilizado [dbdiagram](https://dbdiagram.io/).
+Utilizado [dbdiagram](https://dbdiagram.io/), confira o nosso [Modelo Físico](https://dbdiagram.io/d/649ae6df02bd1c4a5e2406ca).
 
 ### Dicionário de Dados:
 <code>[dicionario.xlsx](./dicionario_dados/dicionario.xlsx)</code>
