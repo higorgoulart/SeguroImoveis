@@ -71,16 +71,16 @@ VALUES
 -- Inserção de dados na tabela sinistro
 INSERT INTO sinistro (id_sinistro, id_apolice, dt_sinistro, descricao, valor_sinistro)
 VALUES
-  (1, 1, '2023-03-15', 'Incêndio no imóvel', 20000.00),
-  (2, 3, '2023-06-20', 'Desmoronamento parcial', 15000.00),
-  (3, 4, '2023-07-10', 'Roubo de pertences', 5000.00),
-  (4, 7, '2023-09-05', 'Inundação causada por enchente', 10000.00),
-  (5, 8, '2023-11-18', 'Danos elétricos', 8000.00),
-  (6, 10, '2023-12-24', 'Vendaval destruiu telhado', 12000.00),
-  (7, 10, '2023-12-27', 'Perda de aluguel devido a sinistro', 500.00),
-  (8, 2, '2023-05-10', 'Furto de objetos valiosos', 7000.00),
-  (9, 5, '2023-08-15', 'Desastre natural causou danos', 18000.00),
-  (10, 6, '2023-09-30', 'Roubo de aparelhos eletrônicos', 3000.00);
+  (1, 1, '2022-03-15', 'Incêndio no imóvel', 20000.00),
+  (2, 3, '2022-06-20', 'Desmoronamento parcial', 15000.00),
+  (3, 4, '2022-07-10', 'Roubo de pertences', 5000.00),
+  (4, 7, '2022-09-05', 'Inundação causada por enchente', 10000.00),
+  (5, 8, '2022-11-18', 'Danos elétricos', 8000.00),
+  (6, 10, '2022-12-24', 'Vendaval destruiu telhado', 12000.00),
+  (7, 10, '2022-12-27', 'Perda de aluguel devido a sinistro', 500.00),
+  (8, 2, '2022-05-10', 'Furto de objetos valiosos', 7000.00),
+  (9, 5, '2022-08-15', 'Desastre natural causou danos', 18000.00),
+  (10, 6, '2022-09-30', 'Roubo de aparelhos eletrônicos', 3000.00);
 
 -- Inserção de dados na tabela pagamento
 INSERT INTO pagamento (id_pagamento, id_apolice, dt_pagamento, valor_pagamento)
@@ -90,7 +90,7 @@ VALUES
   (3, 3, '2023-04-15', 275.00),
   (4, 4, '2023-05-20', 280.00),
   (5, 5, '2023-06-25', 320.00),
-  (6, 6, '2023-07-30', 260.00),
+  (6, 6, '2023-02-12', 260.00),
   (7, 7, '2023-08-05', 340.00),
   (8, 8, '2023-09-10', 225.00),
   (9, 9, '2023-10-15', 290.00),
@@ -99,13 +99,13 @@ VALUES
 -- Inserção de dados na tabela avaliacao
 INSERT INTO avaliacao (id_avaliacao, id_imovel, dt_avaliacao, valor_avaliado)
 VALUES
-  (1, 1, '2023-02-20', 260000.00),
-  (2, 2, '2023-03-25', 170000.00),
-  (3, 3, '2023-04-30', 190000.00),
-  (4, 4, '2023-05-05', 210000.00),
-  (5, 5, '2023-06-10', 320000.00),
-  (6, 6, '2023-07-15', 230000.00),
-  (7, 7, '2023-08-20', 270000.00),
-  (8, 8, '2023-09-25', 180000.00),
-  (9, 9, '2023-10-30', 200000.00),
-  (10, 10, '2023-11-05', 240000.00);
+  (1, 1, '2021-02-20', 260000.00),
+  (2, 2, '2021-03-25', 170000.00),
+  (3, 3, '2021-04-30', 190000.00),
+  (4, 4, '2021-05-05', 210000.00),
+  (5, 5, '2021-06-10', 320000.00),
+  (6, 6, '2021-07-15', 230000.00),
+  (7, 7, '2021-08-20', 270000.00),
+  (8, 8, '2021-09-25', 180000.00),
+  (9, 9, '2021-10-30', 200000.00),
+  (10, 10, '2021-11-05', 240000.00);
