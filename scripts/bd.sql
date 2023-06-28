@@ -29,7 +29,7 @@ SELECT c.nome,
 
 END
 
--- Trigger para evitar o pagamento caso a apólice já esteja cancelada:
+-- Trigger para evitar o pagamento caso a apólice já esteja expirada:
 CREATE TRIGGER bloquear_pagamento_cancelado
 BEFORE INSERT ON pagamento
 FOR EACH ROW
