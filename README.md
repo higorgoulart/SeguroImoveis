@@ -14,7 +14,7 @@
 
 ### Modelo Físico:
 <div>
-    <img src="modelo_fisico/er_diagram.png" style="heigh: 400px; width: 600px;">
+    <img src="modelo_fisico/er_diagram.png" alt="Modelo Físico" style="heigh: 400px; width: 600px;">
 </div>
 
 Utilizado [dbdiagram](https://dbdiagram.io/), confira o nosso [Modelo Físico](https://dbdiagram.io/d/649ae6df02bd1c4a5e2406ca).
@@ -36,7 +36,14 @@ Banco de dados utilizado MySQL Server versão 2022 - Azure.<br>
 
 - #### Objetos de BD (stored procedure, triggers e functions):
     <code>[bd.sql](./scripts/bd.sql)</code>
-  
+
+- #### Selects:
+  <code>[selects.sql](./scripts/selects.sql)</code>
+
 ### Código do sistema: 
-Linguagem de Programação C# .NET Windows Forms.<br>
+Linguagens de Programação: 
+
+- #### .NET Framework 4.8
+- #### Windows Forms para as telas
+- #### Biblioteca MySql.Data (8.0.33) para a conexão com o banco.<br>
  <code>[código fonte da aplicação](./fonte)</code>
