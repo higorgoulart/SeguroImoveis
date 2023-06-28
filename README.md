@@ -22,6 +22,9 @@ Utilizado [dbdiagram](https://dbdiagram.io/), confira o nosso [Modelo Físico](h
 ### Dicionário de Dados:
 <code>[dicionario.xlsx](./dicionario_dados/dicionario.xlsx)</code>
 
+### Relatório Técnico:
+<code>[relatorio_tecnico.docx](./relatorio_tecnico/relatorio_tecnico.docx)</code>
+
 ### Scripts:
 Banco de dados utilizado MySQL Server versão 2022 - Azure.<br>
 
