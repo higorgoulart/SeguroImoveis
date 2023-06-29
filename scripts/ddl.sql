@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `cliente` (
-  `id_cliente` int PRIMARY KEY,
+  `id_cliente` int AUTO_INCREMENT PRIMARY KEY,
   `nome` varchar(255),
   `dt_nasc` date,
   `endereco` varchar(255),
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 );
 
 CREATE TABLE IF NOT EXISTS `imovel` (
-  `id_imovel` int PRIMARY KEY,
+  `id_imovel` int AUTO_INCREMENT PRIMARY KEY,
   `id_proprietario` int,
   `id_inquilino` int,
   `endereco` varchar(255),
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `imovel` (
 );
 
 CREATE TABLE IF NOT EXISTS `apolice` (
-  `id_apolice` int PRIMARY KEY,
+  `id_apolice` int AUTO_INCREMENT PRIMARY KEY,
   `id_imovel` int,
   `dt_inicio` date,
   `dt_termino` date,
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `apolice` (
 );
 
 CREATE TABLE IF NOT EXISTS `cobertura` (
-  `id_cobertura` int PRIMARY KEY,
+  `id_cobertura` int AUTO_INCREMENT PRIMARY KEY,
   `descricao` varchar(255),
   `valor` decimal(12,2)
 );
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `apolice_cobertura` (
 );
 
 CREATE TABLE IF NOT EXISTS `sinistro` (
-  `id_sinistro` int PRIMARY KEY,
+  `id_sinistro` int AUTO_INCREMENT PRIMARY KEY,
   `id_apolice` int,
   `dt_sinistro` date,
   `descricao` varchar(255),
@@ -46,14 +46,14 @@ CREATE TABLE IF NOT EXISTS `sinistro` (
 );
 
 CREATE TABLE IF NOT EXISTS `pagamento` (
-  `id_pagamento` int PRIMARY KEY,
+  `id_pagamento` int AUTO_INCREMENT PRIMARY KEY,
   `id_apolice` int,
   `dt_pagamento` date,
   `valor_pagamento` decimal(12,2)
 );
 
 CREATE TABLE IF NOT EXISTS `avaliacao` (
-  `id_avaliacao` int PRIMARY KEY,
+  `id_avaliacao` int AUTO_INCREMENT PRIMARY KEY,
   `id_imovel` int,
   `dt_avaliacao` date,
   `valor_avaliado` decimal(12,2)
