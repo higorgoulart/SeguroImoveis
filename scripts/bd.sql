@@ -1,6 +1,5 @@
 --Procedure responsável pelo relatório do window
 DELIMITER $$
-
 CREATE PROCEDURE sp_relatorio1 (
 	IN dataini DATE,
     IN datafim DATE
@@ -24,7 +23,6 @@ BEGIN
 	JOIN imovel i ON i.id_proprietario = c.id_cliente
 	JOIN apolice a ON a.id_imovel = i.id_imovel
 	WHERE a.dt_inicio BETWEEN dataini AND datafim;
-END;	
 END$$
 
 -- Trigger para evitar o pagamento caso a apólice já esteja expirada:
