@@ -46,9 +46,11 @@ RETURNS VARCHAR(3) READS SQL DATA
 BEGIN
   DECLARE apolice_ativa VARCHAR(3);
   SET apolice_ativa = 'Não';
-  IF EXISTS (SELECT 1 FROM apolice WHERE id_imovel = id_imovel AND CURDATE() BETWEEN dt_inicio AND dt_termino) THEN
+  
+  IF (SELECT COUNT(*) FROM apolice WHERE id_imovel = 6 AND CURDATE() BETWEEN dt_inicio AND dt_termino) = 0 THEN
     SET apolice_ativa = 'Sim';
   END IF;
+  
   RETURN apolice_ativa;
 END$$
 
