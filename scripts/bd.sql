@@ -41,14 +41,14 @@ END$$
 
 -- Função para verificar apólice ativa
 DELIMITER $$
-CREATE FUNCTION IF NOT EXISTS verificar_apolice_ativa(id_imovel INT)
+CREATE FUNCTION IF NOT EXISTS verificar_apolice_ativa(id INT)
 RETURNS VARCHAR(3) READS SQL DATA
 BEGIN
   DECLARE apolice_ativa VARCHAR(3);
-  SET apolice_ativa = 'Não';
+  SET apolice_ativa = 'Sim';
   
-  IF (SELECT COUNT(*) FROM apolice WHERE id_imovel = 6 AND CURDATE() BETWEEN dt_inicio AND dt_termino) = 0 THEN
-    SET apolice_ativa = 'Sim';
+  IF (SELECT COUNT(*) FROM apolice WHERE id_imovel = id AND CURDATE() BETWEEN dt_inicio AND dt_termino) = 0 THEN
+    SET apolice_ativa = 'Não';
   END IF;
   
   RETURN apolice_ativa;
