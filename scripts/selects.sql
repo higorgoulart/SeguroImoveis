@@ -19,8 +19,8 @@ SELECT a.id_apolice, a.dt_inicio, a.dt_termino, GROUP_CONCAT(c.descricao SEPARAT
 FROM apolice a
 JOIN apolice_cobertura ac ON a.id_apolice = ac.id_apolice
 JOIN cobertura c ON ac.id_cobertura = c.id_cobertura
-GROUP BY a.id_apolice, a.dt_inicio, a.dt_termino
-HAVING COUNT(ac.id_cobertura) = (SELECT COUNT(*) FROM cobertura);
+where (select count(*) from apolice_cobertura ac2 where ac2.id_apolice = a.id_apolice) > 2
+GROUP BY a.id_apolice, a.dt_inicio, a.dt_termino;
 
 --4) Consulta de média de avaliação por tipo de imóvel:
 SELECT i.tipo_imovel, AVG(a.valor_avaliado) AS media_avaliacao
