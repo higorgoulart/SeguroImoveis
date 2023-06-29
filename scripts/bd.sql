@@ -53,31 +53,3 @@ BEGIN
   
   RETURN apolice_ativa;
 END$$
-
--- Procedure para inserir itens
-DELIMITER $$
-CREATE PROCEDURE criar_registros(IN num_registros INT)
-BEGIN
-    DECLARE contador INT DEFAULT 0;
-    DECLARE id_proprietario INT;
-    DECLARE id_inquilino INT;
-    
-    WHILE contador < num_registros DO
-        REPEAT
-            SET id_proprietario = FLOOR(RAND() * 10) + 1; -- id_proprietario entre 1 e 10
-            SET id_inquilino = FLOOR(RAND() * 10) + 1; -- id_inquilino entre 1 e 10
-        UNTIL id_inquilino <> id_proprietario END REPEAT;
-        
-        INSERT INTO imovel (id_proprietario, id_inquilino, endereco, tipo_imovel, valor_imovel, area_imovel, ano_construcao)
-        SELECT
-            id_proprietario,
-            id_inquilino,
-            CONCAT('Endereco', contador),
-            CONCAT('Tipo', contador),
-            RAND() * 1000000,
-            RAND() * 1000,
-            2000 + FLOOR(RAND() * 23);
-        
-        SET contador = contador + 1;
-    END WHILE;
-END$$
