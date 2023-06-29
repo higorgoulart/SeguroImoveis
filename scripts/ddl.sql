@@ -74,19 +74,3 @@ ALTER TABLE `sinistro` ADD FOREIGN KEY (`id_apolice`) REFERENCES `apolice` (`id_
 ALTER TABLE `pagamento` ADD FOREIGN KEY (`id_apolice`) REFERENCES `apolice` (`id_apolice`);
 
 ALTER TABLE `avaliacao` ADD FOREIGN KEY (`id_imovel`) REFERENCES `imovel` (`id_imovel`);
-
--- CREATE INDEXES
--- APOLICE
-CREATE UNIQUE CLUSTERED INDEX `idx_id_apolice` ON `apolice` (`id_apolice`)
-CREATE UNIQUE INDEX `idx_id_apolice_id_imovel` ON `apolice` (`id_apolice`, `id_imovel`)
-
--- IMOVEL
-CREATE UNIQUE CLUSTERED INDEX `idx_id_imovel` ON `imovel` (`id_imovel`)
-CREATE UNIQUE INDEX `idx_id_imovel_tipo_imovel` ON `imovel` (`id_imovel`, `tipo_imovel`)
-
--- AVALIACAO
-CREATE UNIQUE CLUSTERED INDEX `idx_id_avaliacao` ON `avaliacao` (`id_avaliacao`)
-CREATE UNIQUE INDEX `idx_id_avaliacao_id_imovel` ON `avaliacao` (`id_avaliacao`, `id_imovel`)
-
--- SINISTRO
-CREATE UNIQUE CLUSTERED INDEX `idx_id_sinistro` ON `sinistro` (`id_sinistro`)

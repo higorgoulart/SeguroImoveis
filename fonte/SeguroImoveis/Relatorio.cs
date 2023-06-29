@@ -31,6 +31,8 @@ namespace SeguroImoveis
 
         private List<ApoliceDataSet> GetApoliceData()
         {
+            var data = new List<ApoliceDataSet>();
+
             try
             {
                 var command = new MySqlCommand();
@@ -42,7 +44,7 @@ namespace SeguroImoveis
                 command.CommandText = "DROP PROCEDURE IF EXISTS sp_relatorio1";
                 command.ExecuteNonQuery();
 
-                command.CommandText = DatabaseUtils.GetScript("bd.sql");
+                command.CommandText = DatabaseUtils.GetScript("sp.sql");
                 command.ExecuteNonQuery();
 
                 command.CommandText = "sp_relatorio1";
@@ -51,13 +53,21 @@ namespace SeguroImoveis
                 command.Parameters["@dataini"].Direction = ParameterDirection.Input;
                 command.Parameters.AddWithValue("@datafim", DatabaseUtils.FormatToDate(dtTermino.Text));
                 command.Parameters["@datafim"].Direction = ParameterDirection.Input;
-                command.ExecuteNonQuery();
+                command.ExecuteNonQuery();    
 
                 using (var cursor = command.ExecuteReader())
                 {
                     while (cursor.Read())
                     {
-                        
+                        data.Add(new ApoliceDataSet(
+                            cursor["nome"].ToString(), 
+                            cursor["datainicial"].ToString().Replace("00:00:00", ""), 
+                            cursor["datafinal"].ToString().Replace("00:00:00", ""), 
+                            cursor["valor_apolice"].ToString(), 
+                            cursor["id_imovel"].ToString(), 
+                            cursor["tem_sinistro"].ToString(), 
+                            cursor["coberturas"].ToString(),
+                            cursor["esta_vigente"].ToString()));
                     }
                 }
             }
@@ -65,12 +75,6 @@ namespace SeguroImoveis
             {
                 _conexao.Close();
             }
-
-            List<ApoliceDataSet> data = new List<ApoliceDataSet>
-            {
-                new ApoliceDataSet("Claudio", DateTime.Today, DateTime.Today, 10.5M, "AAA", true, "AA", false),
-                new ApoliceDataSet("Cleiton", DateTime.Today, DateTime.Today, 10.5M, "AAA", true, "AA", false)
-            };
 
             return data;
         } 

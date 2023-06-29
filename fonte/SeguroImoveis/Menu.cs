@@ -11,7 +11,7 @@ namespace SeguroImoveis
 
         public Menu()
         {
-            _conexao = new MySqlConnection("Server=localhost;Database=seguradora_imovel;Uid=root;Pwd=;Allow User Variables=True;");
+            _conexao = new MySqlConnection("Server=localhost;Database=seguradora_imovel;Uid=root;Pwd=root;Allow User Variables=True;");
 
             CreateTables();
             AddDefaultData();

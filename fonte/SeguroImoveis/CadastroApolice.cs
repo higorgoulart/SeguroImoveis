@@ -37,7 +37,7 @@ namespace SeguroImoveis
             {
                 var script = $@"
                     INSERT INTO apolice (id_apolice, id_imovel, dt_inicio, dt_termino, valor_apolice) 
-                    VALUES ({tbIdApolice.Text}, {tbIdImovel.Text}, '{DatabaseUtils.FormatToDate(dtInicio.Text)}', '{DatabaseUtils.FormatToDate(dtTermino.Text)}', {tbValor.Text})";
+                    VALUES ({tbIdApolice.Text}, {tbIdImovel.Text}, '{DatabaseUtils.FormatToDate(dtInicio.Text)}', '{DatabaseUtils.FormatToDate(dtTermino.Text)}', {DatabaseUtils.FormatToDecimal(tbValor.Text)})";
 
                 var command = new MySqlCommand(script, _conexao);
 

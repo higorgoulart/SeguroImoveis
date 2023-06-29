@@ -5,23 +5,23 @@ namespace SeguroImoveis.Models
     public class ApoliceDataSet
     {
         public string Cliente { get; set; }
-        public DateTime DtInicio { get; set; }
-        public DateTime DtTermino { get; set; }
-        public decimal Valor { get; set; }
+        public string DtInicio { get; set; }
+        public string DtTermino { get; set; }
+        public string Valor { get; set; }
         public string Imovel { get; set; }
-        public bool Sinistro { get; set; }
+        public string Sinistro { get; set; }
         public string Cobertura { get; set; }
-        public bool Vigente { get; set; }
+        public string Vigente { get; set; }
 
         public ApoliceDataSet(
             string cliente,
-            DateTime dtInicio,
-            DateTime dtTermino,
-            decimal valor,
+            string dtInicio,
+            string dtTermino,
+            string valor,
             string imovel,
-            bool sinistro,
+            string sinistro,
             string cobertura,
-            bool vigente)
+            string vigente)
         {
             Cliente = cliente;
             DtInicio = dtInicio;
