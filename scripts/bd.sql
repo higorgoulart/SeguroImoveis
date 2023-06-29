@@ -56,7 +56,7 @@ END$$
 
 -- Procedure para inserir itens
 DELIMITER $$
-CREATE PROCEDURE criar_registros(IN num_registros INT, IN id_inicial_imovel INT)
+CREATE PROCEDURE criar_registros(IN num_registros INT)
 BEGIN
     DECLARE contador INT DEFAULT 0;
     DECLARE id_proprietario INT;
@@ -68,13 +68,12 @@ BEGIN
             SET id_inquilino = FLOOR(RAND() * 10) + 1; -- id_inquilino entre 1 e 10
         UNTIL id_inquilino <> id_proprietario END REPEAT;
         
-        INSERT INTO imovel (id_imovel, id_proprietario, id_inquilino, endereco, tipo_imovel, valor_imovel, area_imovel, ano_construcao)
+        INSERT INTO imovel (id_proprietario, id_inquilino, endereco, tipo_imovel, valor_imovel, area_imovel, ano_construcao)
         SELECT
-            id_inicial_imovel + contador,
             id_proprietario,
             id_inquilino,
-            CONCAT('Endereco', id_inicial_imovel + contador),
-            CONCAT('Tipo', id_inicial_imovel + contador),
+            CONCAT('Endereco', contador),
+            CONCAT('Tipo', contador),
             RAND() * 1000000,
             RAND() * 1000,
             2000 + FLOOR(RAND() * 23);
