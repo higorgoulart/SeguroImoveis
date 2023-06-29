@@ -28,8 +28,13 @@ FROM imovel i
 LEFT JOIN avaliacao a ON i.id_imovel = a.id_imovel
 GROUP BY i.tipo_imovel;
 
---5)Consulta de valor total de sinistros por mês:
+--5) Consulta de valor total de sinistros por mês:
 SELECT MONTH(s.dt_sinistro) AS mes, YEAR(s.dt_sinistro) AS ano, SUM(s.valor_sinistro) AS valor_total_sinistros
 FROM sinistro s
 GROUP BY mes, ano
 ORDER BY ano, mes;
+
+--6) Consulta demonstrando funcionamento da função:
+SELECT c.nome as nome_prop, i.id_imovel, verificar_apolice_ativa(i.id_imovel) as is_ativa
+FROM cliente c
+INNER JOIN imovel i ON id_cliente = id_proprietario;
