@@ -1,4 +1,5 @@
 --Procedure responsável pelo relatório do window
+DELIMITER $$
 CREATE PROCEDURE sp_relatorio1
     @dataini DATE,
     @datafim DATE
@@ -26,10 +27,11 @@ SELECT c.nome,
   join imovel i on i.id_proprietario = c.id_cliente
   join apolice a on a.id_imovel = i.id_imovel
  where a.dt_inicio between @dataini and @datafim
-
-END
+	
+END$$
 
 -- Trigger para evitar o pagamento caso a apólice já esteja expirada:
+DELIMITER $$
 CREATE TRIGGER bloquear_pagamento_cancelado
 BEFORE INSERT ON pagamento
 FOR EACH ROW
@@ -40,9 +42,10 @@ BEGIN
     SIGNAL SQLSTATE '45000'
     SET MESSAGE_TEXT = 'Não é possível inserir pagamento para uma apólice expirada';
   END IF;
-END;
+END$$
 
 -- Função para verificar apólice ativa
+DELIMITER $$
 CREATE FUNCTION IF NOT EXISTS verificar_apolice_ativa(id_imovel INT)
 RETURNS VARCHAR(3) READS SQL DATA
 BEGIN
@@ -52,4 +55,33 @@ BEGIN
     SET apolice_ativa = 'Sim';
   END IF;
   RETURN apolice_ativa;
-END;
+END$$
+
+-- Procedure para inserir itens
+DELIMITER $$
+CREATE PROCEDURE criar_registros(IN num_registros INT, IN id_inicial_imovel INT)
+BEGIN
+    DECLARE contador INT DEFAULT 0;
+    DECLARE id_proprietario INT;
+    DECLARE id_inquilino INT;
+    
+    WHILE contador < num_registros DO
+        REPEAT
+            SET id_proprietario = FLOOR(RAND() * 10) + 1; -- id_proprietario entre 1 e 10
+            SET id_inquilino = FLOOR(RAND() * 10) + 1; -- id_inquilino entre 1 e 10
+        UNTIL id_inquilino <> id_proprietario END REPEAT;
+        
+        INSERT INTO imovel (id_imovel, id_proprietario, id_inquilino, endereco, tipo_imovel, valor_imovel, area_imovel, ano_construcao)
+        SELECT
+            id_inicial_imovel + contador,
+            id_proprietario,
+            id_inquilino,
+            CONCAT('Endereco', id_inicial_imovel + contador),
+            CONCAT('Tipo', id_inicial_imovel + contador),
+            RAND() * 1000000,
+            RAND() * 1000,
+            2000 + FLOOR(RAND() * 23);
+        
+        SET contador = contador + 1;
+    END WHILE;
+END$$
