@@ -42,3 +42,14 @@ BEGIN
   END IF;
 END;
 
+-- Função para verificar apólice ativa
+CREATE FUNCTION IF NOT EXISTS verificar_apolice_ativa(id_imovel INT)
+RETURNS VARCHAR(3) READS SQL DATA
+BEGIN
+  DECLARE apolice_ativa VARCHAR(3);
+  SET apolice_ativa = 'Não';
+  IF EXISTS (SELECT 1 FROM apolice WHERE id_imovel = id_imovel AND CURDATE() BETWEEN dt_inicio AND dt_termino) THEN
+    SET apolice_ativa = 'Sim';
+  END IF;
+  RETURN apolice_ativa;
+END;
